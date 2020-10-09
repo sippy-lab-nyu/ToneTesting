@@ -16,8 +16,8 @@
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="p1:CreateContinuousUniform">
-          <p1:Lower>0</p1:Lower>
-          <p1:Upper>1</p1:Upper>
+          <p1:Lower>5</p1:Lower>
+          <p1:Upper>8</p1:Upper>
         </Combinator>
       </Expression>
       <Expression xsi:type="Combinator">
@@ -93,66 +93,178 @@
           <rx:Count>1</rx:Count>
         </Combinator>
       </Expression>
-      <Expression xsi:type="Equal">
-        <Operand xsi:type="IntProperty">
-          <Value>0</Value>
-        </Operand>
+      <Expression xsi:type="Condition">
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="Equal">
+              <Operand xsi:type="IntProperty">
+                <Value>0</Value>
+              </Operand>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="1" To="2" Label="Source1" />
+          </Edges>
+        </Workflow>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\PlaySound.bonsai">
         <SoundIndex>2</SoundIndex>
       </Expression>
-      <Expression xsi:type="Equal">
-        <Operand xsi:type="IntProperty">
-          <Value>1</Value>
-        </Operand>
+      <Expression xsi:type="Condition">
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="Equal">
+              <Operand xsi:type="IntProperty">
+                <Value>1</Value>
+              </Operand>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="1" To="2" Label="Source1" />
+          </Edges>
+        </Workflow>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\PlaySound.bonsai">
         <SoundIndex>2</SoundIndex>
       </Expression>
-      <Expression xsi:type="Equal">
-        <Operand xsi:type="IntProperty">
-          <Value>2</Value>
-        </Operand>
+      <Expression xsi:type="Condition">
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="Equal">
+              <Operand xsi:type="IntProperty">
+                <Value>2</Value>
+              </Operand>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="1" To="2" Label="Source1" />
+          </Edges>
+        </Workflow>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\PlaySound.bonsai">
         <SoundIndex>2</SoundIndex>
       </Expression>
-      <Expression xsi:type="Equal">
-        <Operand xsi:type="IntProperty">
-          <Value>3</Value>
-        </Operand>
+      <Expression xsi:type="Condition">
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="Equal">
+              <Operand xsi:type="IntProperty">
+                <Value>3</Value>
+              </Operand>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="1" To="2" Label="Source1" />
+          </Edges>
+        </Workflow>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\PlaySound.bonsai">
         <SoundIndex>2</SoundIndex>
       </Expression>
-      <Expression xsi:type="Equal">
-        <Operand xsi:type="IntProperty">
-          <Value>4</Value>
-        </Operand>
+      <Expression xsi:type="Condition">
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="Equal">
+              <Operand xsi:type="IntProperty">
+                <Value>4</Value>
+              </Operand>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="1" To="2" Label="Source1" />
+          </Edges>
+        </Workflow>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\PlaySound.bonsai">
         <SoundIndex>2</SoundIndex>
       </Expression>
-      <Expression xsi:type="Equal">
-        <Operand xsi:type="IntProperty">
-          <Value>5</Value>
-        </Operand>
+      <Expression xsi:type="Condition">
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="Equal">
+              <Operand xsi:type="IntProperty">
+                <Value>5</Value>
+              </Operand>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="1" To="2" Label="Source1" />
+          </Edges>
+        </Workflow>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\PlaySound.bonsai">
         <SoundIndex>2</SoundIndex>
       </Expression>
-      <Expression xsi:type="Equal">
-        <Operand xsi:type="IntProperty">
-          <Value>6</Value>
-        </Operand>
+      <Expression xsi:type="Condition">
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="Equal">
+              <Operand xsi:type="IntProperty">
+                <Value>6</Value>
+              </Operand>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="1" To="2" Label="Source1" />
+          </Edges>
+        </Workflow>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\PlaySound.bonsai">
         <SoundIndex>2</SoundIndex>
       </Expression>
-      <Expression xsi:type="Equal">
-        <Operand xsi:type="IntProperty">
-          <Value>7</Value>
-        </Operand>
+      <Expression xsi:type="Condition">
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="Equal">
+              <Operand xsi:type="IntProperty">
+                <Value>7</Value>
+              </Operand>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="1" To="2" Label="Source1" />
+          </Edges>
+        </Workflow>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\PlaySound.bonsai">
         <SoundIndex>2</SoundIndex>
@@ -162,7 +274,7 @@
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:RepeatCount">
-          <rx:Count>3</rx:Count>
+          <rx:Count>100</rx:Count>
         </Combinator>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\HarpSoundCard.bonsai" />
@@ -182,9 +294,6 @@
       </Expression>
       <Expression xsi:type="BehaviorSubject">
         <Name>Path</Name>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="p1:CreateCategorical" />
       </Expression>
     </Nodes>
     <Edges>
