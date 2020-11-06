@@ -7,6 +7,7 @@
                  xmlns:num="clr-namespace:Bonsai.Numerics;assembly=Bonsai.Numerics"
                  xmlns:p1="clr-namespace:Bonsai.Numerics.Distributions;assembly=Bonsai.Numerics"
                  xmlns:scr="clr-namespace:Bonsai.Scripting;assembly=Bonsai.Scripting"
+                 xmlns:dsp="clr-namespace:Bonsai.Dsp;assembly=Bonsai.Dsp"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
@@ -28,16 +29,30 @@
       <Expression xsi:type="BehaviorSubject">
         <Name>Path</Name>
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:Range">
-          <rx:Start>0</rx:Start>
-          <rx:Count>160</rx:Count>
-        </Combinator>
+      <Expression xsi:type="ExternalizedMapping">
+        <Property Name="Value" DisplayName="Channels" />
       </Expression>
-      <Expression xsi:type="Divide">
-        <Operand xsi:type="IntProperty">
-          <Value>20</Value>
-        </Operand>
+      <Expression xsi:type="PropertySource" TypeArguments="dsp:SelectChannels,sys:Int32[]">
+        <MemberName>Channels</MemberName>
+        <Value>
+          <int>1</int>
+          <int>2</int>
+          <int>3</int>
+          <int>4</int>
+          <int>5</int>
+          <int>6</int>
+        </Value>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Merge" />
+      </Expression>
+      <Expression xsi:type="ExternalizedMapping">
+        <Property Name="Count" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:RepeatCount">
+          <rx:Count>0</rx:Count>
+        </Combinator>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="num:Permutation" />
@@ -52,18 +67,6 @@
       <Expression xsi:type="ReplaySubject">
         <Name>TrialParameters</Name>
         <BufferSize xsi:nil="true" />
-      </Expression>
-      <Expression xsi:type="ExternalizedMapping">
-        <Property Name="Lower Bound ITI Duration " />
-        <Property Name="Upper Bound ITI Duration" />
-        <Property Name="Tone 1 Index" />
-        <Property Name="Tone 2 Index" />
-        <Property Name="Tone 3 Index" />
-        <Property Name="Tone 4 Index" />
-        <Property Name="Tone 5 Index" />
-        <Property Name="Tone 6 Index" />
-        <Property Name="Tone 7 Index" />
-        <Property Name="Tone 8 Index" />
       </Expression>
       <Expression xsi:type="SubscribeSubject">
         <Name>StartTrigger</Name>
@@ -84,6 +87,10 @@
       </Expression>
       <Expression xsi:type="SubscribeSubject">
         <Name>TrialParameters</Name>
+      </Expression>
+      <Expression xsi:type="ExternalizedMapping">
+        <Property Name="Lower Bound ITI Duration " />
+        <Property Name="Upper Bound ITI Duration" />
       </Expression>
       <Expression xsi:type="CreateObservable">
         <Workflow>
@@ -109,221 +116,22 @@
                 <Property Name="DueTime" />
               </PropertyMappings>
             </Expression>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="SoundIndex" DisplayName="Tone 1 Index" Category="Tones" />
-            </Expression>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="SoundIndex" DisplayName="Tone 2 Index" Category="Tones" />
-            </Expression>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="SoundIndex" DisplayName="Tone 3 Index" Category="Tones" />
-            </Expression>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="SoundIndex" DisplayName="Tone 4 Index" Category="Tones" />
-            </Expression>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="SoundIndex" DisplayName="Tone 5 Index" Category="Tones" />
-            </Expression>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="SoundIndex" DisplayName="Tone 6 Index" Category="Tones" />
-            </Expression>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="SoundIndex" DisplayName="Tone 7 Index" Category="Tones" />
-            </Expression>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="SoundIndex" DisplayName="Tone 8 Index" Category="Tones" />
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Timer">
+                <rx:DueTime>PT0S</rx:DueTime>
+                <rx:Period>PT0S</rx:Period>
+              </Combinator>
             </Expression>
             <Expression xsi:type="WorkflowInput">
               <Name>Source1</Name>
             </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:Delay">
-                <rx:DueTime>PT0.757S</rx:DueTime>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:Take">
-                <rx:Count>1</rx:Count>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="Condition">
-              <Workflow>
-                <Nodes>
-                  <Expression xsi:type="WorkflowInput">
-                    <Name>Source1</Name>
-                  </Expression>
-                  <Expression xsi:type="Equal">
-                    <Operand xsi:type="IntProperty">
-                      <Value>0</Value>
-                    </Operand>
-                  </Expression>
-                  <Expression xsi:type="WorkflowOutput" />
-                </Nodes>
-                <Edges>
-                  <Edge From="0" To="1" Label="Source1" />
-                  <Edge From="1" To="2" Label="Source1" />
-                </Edges>
-              </Workflow>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Extensions\PlaySound.bonsai">
-              <SoundIndex>2</SoundIndex>
-            </Expression>
-            <Expression xsi:type="Condition">
-              <Workflow>
-                <Nodes>
-                  <Expression xsi:type="WorkflowInput">
-                    <Name>Source1</Name>
-                  </Expression>
-                  <Expression xsi:type="Equal">
-                    <Operand xsi:type="IntProperty">
-                      <Value>1</Value>
-                    </Operand>
-                  </Expression>
-                  <Expression xsi:type="WorkflowOutput" />
-                </Nodes>
-                <Edges>
-                  <Edge From="0" To="1" Label="Source1" />
-                  <Edge From="1" To="2" Label="Source1" />
-                </Edges>
-              </Workflow>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Extensions\PlaySound.bonsai">
-              <SoundIndex>4</SoundIndex>
-            </Expression>
-            <Expression xsi:type="Condition">
-              <Workflow>
-                <Nodes>
-                  <Expression xsi:type="WorkflowInput">
-                    <Name>Source1</Name>
-                  </Expression>
-                  <Expression xsi:type="Equal">
-                    <Operand xsi:type="IntProperty">
-                      <Value>2</Value>
-                    </Operand>
-                  </Expression>
-                  <Expression xsi:type="WorkflowOutput" />
-                </Nodes>
-                <Edges>
-                  <Edge From="0" To="1" Label="Source1" />
-                  <Edge From="1" To="2" Label="Source1" />
-                </Edges>
-              </Workflow>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Extensions\PlaySound.bonsai">
-              <SoundIndex>6</SoundIndex>
-            </Expression>
-            <Expression xsi:type="Condition">
-              <Workflow>
-                <Nodes>
-                  <Expression xsi:type="WorkflowInput">
-                    <Name>Source1</Name>
-                  </Expression>
-                  <Expression xsi:type="Equal">
-                    <Operand xsi:type="IntProperty">
-                      <Value>3</Value>
-                    </Operand>
-                  </Expression>
-                  <Expression xsi:type="WorkflowOutput" />
-                </Nodes>
-                <Edges>
-                  <Edge From="0" To="1" Label="Source1" />
-                  <Edge From="1" To="2" Label="Source1" />
-                </Edges>
-              </Workflow>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Extensions\PlaySound.bonsai">
-              <SoundIndex>8</SoundIndex>
-            </Expression>
-            <Expression xsi:type="Condition">
-              <Workflow>
-                <Nodes>
-                  <Expression xsi:type="WorkflowInput">
-                    <Name>Source1</Name>
-                  </Expression>
-                  <Expression xsi:type="Equal">
-                    <Operand xsi:type="IntProperty">
-                      <Value>4</Value>
-                    </Operand>
-                  </Expression>
-                  <Expression xsi:type="WorkflowOutput" />
-                </Nodes>
-                <Edges>
-                  <Edge From="0" To="1" Label="Source1" />
-                  <Edge From="1" To="2" Label="Source1" />
-                </Edges>
-              </Workflow>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Extensions\PlaySound.bonsai">
-              <SoundIndex>10</SoundIndex>
-            </Expression>
-            <Expression xsi:type="Condition">
-              <Workflow>
-                <Nodes>
-                  <Expression xsi:type="WorkflowInput">
-                    <Name>Source1</Name>
-                  </Expression>
-                  <Expression xsi:type="Equal">
-                    <Operand xsi:type="IntProperty">
-                      <Value>5</Value>
-                    </Operand>
-                  </Expression>
-                  <Expression xsi:type="WorkflowOutput" />
-                </Nodes>
-                <Edges>
-                  <Edge From="0" To="1" Label="Source1" />
-                  <Edge From="1" To="2" Label="Source1" />
-                </Edges>
-              </Workflow>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Extensions\PlaySound.bonsai">
-              <SoundIndex>12</SoundIndex>
-            </Expression>
-            <Expression xsi:type="Condition">
-              <Workflow>
-                <Nodes>
-                  <Expression xsi:type="WorkflowInput">
-                    <Name>Source1</Name>
-                  </Expression>
-                  <Expression xsi:type="Equal">
-                    <Operand xsi:type="IntProperty">
-                      <Value>6</Value>
-                    </Operand>
-                  </Expression>
-                  <Expression xsi:type="WorkflowOutput" />
-                </Nodes>
-                <Edges>
-                  <Edge From="0" To="1" Label="Source1" />
-                  <Edge From="1" To="2" Label="Source1" />
-                </Edges>
-              </Workflow>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Extensions\PlaySound.bonsai">
-              <SoundIndex>14</SoundIndex>
-            </Expression>
-            <Expression xsi:type="Condition">
-              <Workflow>
-                <Nodes>
-                  <Expression xsi:type="WorkflowInput">
-                    <Name>Source1</Name>
-                  </Expression>
-                  <Expression xsi:type="Equal">
-                    <Operand xsi:type="IntProperty">
-                      <Value>7</Value>
-                    </Operand>
-                  </Expression>
-                  <Expression xsi:type="WorkflowOutput" />
-                </Nodes>
-                <Edges>
-                  <Edge From="0" To="1" Label="Source1" />
-                  <Edge From="1" To="2" Label="Source1" />
-                </Edges>
-              </Workflow>
+            <Expression xsi:type="PropertyMapping">
+              <PropertyMappings>
+                <Property Name="SoundIndex" />
+              </PropertyMappings>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Extensions\PlaySound.bonsai">
               <SoundIndex>16</SoundIndex>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:Merge" />
             </Expression>
             <Expression xsi:type="WorkflowOutput" />
           </Nodes>
@@ -332,42 +140,11 @@
             <Edge From="1" To="2" Label="Source1" />
             <Edge From="2" To="3" Label="Source1" />
             <Edge From="3" To="4" Label="Source1" />
-            <Edge From="4" To="14" Label="Source2" />
-            <Edge From="5" To="17" Label="Source2" />
-            <Edge From="6" To="19" Label="Source2" />
-            <Edge From="7" To="21" Label="Source2" />
-            <Edge From="8" To="23" Label="Source2" />
-            <Edge From="9" To="25" Label="Source2" />
-            <Edge From="10" To="27" Label="Source2" />
-            <Edge From="11" To="29" Label="Source2" />
-            <Edge From="12" To="31" Label="Source2" />
-            <Edge From="13" To="14" Label="Source1" />
-            <Edge From="14" To="15" Label="Source1" />
-            <Edge From="15" To="16" Label="Source1" />
-            <Edge From="15" To="18" Label="Source1" />
-            <Edge From="15" To="20" Label="Source1" />
-            <Edge From="15" To="22" Label="Source1" />
-            <Edge From="15" To="24" Label="Source1" />
-            <Edge From="15" To="26" Label="Source1" />
-            <Edge From="15" To="28" Label="Source1" />
-            <Edge From="15" To="30" Label="Source1" />
-            <Edge From="16" To="17" Label="Source1" />
-            <Edge From="17" To="32" Label="Source8" />
-            <Edge From="18" To="19" Label="Source1" />
-            <Edge From="19" To="32" Label="Source7" />
-            <Edge From="20" To="21" Label="Source1" />
-            <Edge From="21" To="32" Label="Source6" />
-            <Edge From="22" To="23" Label="Source1" />
-            <Edge From="23" To="32" Label="Source5" />
-            <Edge From="24" To="25" Label="Source1" />
-            <Edge From="25" To="32" Label="Source4" />
-            <Edge From="26" To="27" Label="Source1" />
-            <Edge From="27" To="32" Label="Source3" />
-            <Edge From="28" To="29" Label="Source1" />
-            <Edge From="29" To="32" Label="Source2" />
-            <Edge From="30" To="31" Label="Source1" />
-            <Edge From="31" To="32" Label="Source1" />
-            <Edge From="32" To="33" Label="Source1" />
+            <Edge From="4" To="5" Label="Source1" />
+            <Edge From="5" To="8" Label="Source2" />
+            <Edge From="6" To="7" Label="Source1" />
+            <Edge From="7" To="8" Label="Source1" />
+            <Edge From="8" To="9" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
@@ -386,14 +163,17 @@
       <Edge From="4" To="5" Label="Source1" />
       <Edge From="6" To="7" Label="Source1" />
       <Edge From="7" To="8" Label="Source1" />
-      <Edge From="8" To="9" Label="Source1" />
-      <Edge From="9" To="10" Label="Source1" />
-      <Edge From="11" To="15" Label="Source2" />
+      <Edge From="8" To="10" Label="Source1" />
+      <Edge From="9" To="10" Label="Source2" />
+      <Edge From="10" To="11" Label="Source1" />
+      <Edge From="11" To="12" Label="Source1" />
       <Edge From="12" To="13" Label="Source1" />
-      <Edge From="13" To="17" Label="Source2" />
       <Edge From="14" To="15" Label="Source1" />
-      <Edge From="15" To="16" Label="Source1" />
-      <Edge From="16" To="17" Label="Source1" />
+      <Edge From="15" To="20" Label="Source2" />
+      <Edge From="16" To="18" Label="Source1" />
+      <Edge From="17" To="18" Label="Source2" />
+      <Edge From="18" To="19" Label="Source1" />
+      <Edge From="19" To="20" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
